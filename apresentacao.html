@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101915">
+  <meta name="description" content="Kingdom é um jogo de reino em desenvolvimento: uma ilha viva, pessoas autônomas e um rei que pode discordar de você.">
+  <title>Kingdom — Um reino que responde</title>
+  <style>
+    :root{color-scheme:dark;--night:#101915;--forest:#1b2c24;--paper:#e9e6d9;--muted:#a8b2a5;--gold:#d6ad72;--line:rgba(233,230,217,.18);--max:1180px}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--night);color:var(--paper);font-family:Arial,Helvetica,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    a:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
+    ::selection{background:var(--gold);color:var(--night)}
+    .wrap{width:min(calc(100% - 56px),var(--max));margin-inline:auto}
+    .eyebrow{margin:0;color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+    .serif{font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-.045em}
+    .nav{position:absolute;z-index:5;left:0;right:0;top:0;border-bottom:1px solid rgba(255,255,255,.13)}
+    .nav-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:13px;font-family:Georgia,'Times New Roman',serif;font-size:1.25rem;letter-spacing:.13em;text-transform:uppercase}
+    .brand-mark{width:26px;height:26px;border:1.5px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:1rem;line-height:1}
+    .nav-links{display:flex;align-items:center;gap:32px;font-size:.83rem;color:#e0e3d9}
+    .nav-links a:hover,.text-link:hover{color:var(--gold)}
+    .nav-links .nav-cta{border:1px solid rgba(214,173,114,.65);border-radius:2px;padding:10px 16px;color:var(--gold)}
+    .hero{position:relative;overflow:hidden;min-height:780px;background:radial-gradient(ellipse 60% 75% at 78% 35%,#2d4437 0%,#17241c 60%,#101915 100%)}
+    .hero::after{content:"";position:absolute;inset:auto 0 0;height:170px;background:linear-gradient(transparent,var(--night));pointer-events:none}
+    .hero-grid{position:relative;z-index:2;min-height:780px;display:grid;grid-template-columns:1fr 1.04fr;align-items:center;gap:25px;padding-top:90px;padding-bottom:100px}
+    .hero-copy{max-width:580px;padding-top:8px}
+    .hero h1{font-size:clamp(4.6rem,9vw,8.3rem);line-height:.88;margin:25px 0 29px}
+    .hero h1 span{display:block;color:var(--gold)}
+    .hero-lead{max-width:470px;font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.25rem,2.2vw,1.65rem);line-height:1.38;color:#e3e5d8}
+    .hero-sub{max-width:445px;margin:20px 0 0;color:var(--muted);font-size:.97rem;line-height:1.75}
+    .actions{display:flex;flex-wrap:wrap;gap:13px;margin-top:36px}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:48px;padding:12px 19px;border:1px solid var(--gold);border-radius:2px;background:var(--gold);color:var(--night);font-size:.79rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,transform .2s}
+    .button:hover{background:#edc794;transform:translateY(-2px)}
+    .button.alt{background:transparent;color:var(--paper);border-color:rgba(233,230,217,.48)}
+    .button.alt:hover{background:rgba(255,255,255,.08)}
+    .hero-note{margin-top:42px;display:flex;gap:20px;align-items:center;color:#a8b5a5;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
+    .hero-note::before{content:"";height:1px;width:36px;background:var(--gold)}
+    .hero-art{position:relative;z-index:1;min-width:0;margin-right:-7vw}
+    .hero-art svg{display:block;width:100%;max-height:670px;overflow:visible;filter:drop-shadow(0 45px 50px rgba(3,9,5,.45))}
+    .art-caption{position:absolute;right:5%;bottom:5%;font-size:.69rem;text-transform:uppercase;letter-spacing:.2em;color:#cad3bc;opacity:.78}
+    .section{padding:110px 0}
+    .section-heading{max-width:720px;margin-bottom:54px}
+    .section-heading h2{font-size:clamp(2.5rem,5vw,4.8rem);line-height:1.04;margin:15px 0 20px}
+    .section-heading p:not(.eyebrow){max-width:620px;margin:0;color:var(--muted);font-size:1.04rem;line-height:1.75}
+    .idea{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#14211a}
+    .idea-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:60px;align-items:center}
+    .idea .quote-mark{font-family:Georgia,serif;color:var(--gold);font-size:9rem;line-height:.7}
+    .idea blockquote{margin:0;font-family:Georgia,serif;font-size:clamp(2rem,3.5vw,3.65rem);line-height:1.18;letter-spacing:-.035em}
+    .idea blockquote em{color:var(--gold);font-style:normal}
+    .idea cite{display:block;margin-top:27px;color:var(--muted);font-family:Arial,Helvetica,sans-serif;font-size:.8rem;font-style:normal;letter-spacing:.12em;text-transform:uppercase}
+    .pillars{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .pillar{min-height:306px;padding:32px 32px 28px 0;border-right:1px solid var(--line)}
+    .pillar + .pillar{padding-left:32px}
+    .pillar:last-child{border:0}
+    .pillar-number{color:var(--gold);font-family:Georgia,serif;font-size:1.1rem}
+    .pillar h3{margin:55px 0 14px;font-family:Georgia,serif;font-weight:400;font-size:1.8rem;line-height:1.1;letter-spacing:-.025em}
+    .pillar p{margin:0;max-width:300px;color:var(--muted);font-size:.91rem;line-height:1.7}
+    .scenario{background:var(--paper);color:#18271e;overflow:hidden}
+    .scenario .eyebrow{color:#82603d}
+    .scenario .section-heading p:not(.eyebrow){color:#566359}
+    .scenario-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:90px;align-items:start}
+    .scenario h2{font-size:clamp(2.7rem,5vw,5rem);line-height:1.02;margin:18px 0 23px}
+    .scenario-intro{font-family:Georgia,serif;font-size:1.35rem;line-height:1.5;color:#394a3e}
+    .scenario-card{margin-top:22px;border:1px solid #bfc9b8;background:#f5f3ea;padding:18px 22px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#586453}
+    .scenario-card strong{display:block;margin-top:5px;color:#1a2b20;font-family:Georgia,serif;font-size:1.28rem;letter-spacing:0;text-transform:none;font-weight:400}
+    .steps{margin:0;padding:0;list-style:none;border-top:1px solid #bfc9b8}
+    .steps li{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:24px 0;border-bottom:1px solid #bfc9b8}
+    .steps .num{color:#876644;font-family:Georgia,serif;font-size:1.4rem}
+    .steps strong{display:block;font-family:Georgia,serif;font-size:1.32rem;font-weight:400}
+    .steps p{margin:5px 0 0;color:#667166;font-size:.9rem;line-height:1.6}
+    .world{background:#14221b}
+    .world-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+    .world-frame{position:relative;min-height:420px;border:1px solid rgba(214,173,114,.33);background:radial-gradient(circle at 50% 38%,#304a39 0%,#1b2e24 46%,#15231b 100%);overflow:hidden}
+    .world-frame::before,.world-frame::after{content:"";position:absolute;border:1px solid rgba(214,173,114,.19);border-radius:50%;width:340px;height:340px;left:50%;top:50%;transform:translate(-50%,-50%)}
+    .world-frame::after{width:240px;height:240px}
+    .world-frame svg{position:absolute;width:100%;height:100%;inset:0}
+    .world-text h2{font-size:clamp(2.8rem,4.3vw,4.6rem);line-height:1.04;margin:18px 0 24px}
+    .world-text p:not(.eyebrow){color:var(--muted);line-height:1.75;max-width:490px}
+    .world-rule{display:flex;gap:16px;align-items:start;padding-top:22px;margin-top:25px;border-top:1px solid var(--line);font-family:Georgia,serif;font-size:1.2rem;color:var(--paper)}
+    .world-rule::before{content:"✦";color:var(--gold);font-size:1rem}
+    .closing{padding:110px 0 120px;text-align:center;background:radial-gradient(ellipse at 50% 0%,#233a2b,#101915 65%)}
+    .closing h2{max-width:800px;margin:16px auto 22px;font-size:clamp(3.1rem,6.5vw,6.5rem);line-height:.99}
+    .closing p:not(.eyebrow){max-width:590px;margin:0 auto 31px;color:var(--muted);line-height:1.7}
+    .closing .button{margin:0 5px 10px}
+    footer{border-top:1px solid var(--line);padding:30px 0;color:#9aa99c;font-size:.79rem}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .footer-inner a:hover{color:var(--gold)}
+    @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:0;padding-top:165px;padding-bottom:70px}.hero{min-height:0}.hero-art{width:min(650px,100%);margin:-20px auto 0}.art-caption{right:3%;bottom:8%}.idea-grid{grid-template-columns:1fr;gap:10px}.idea .quote-mark{font-size:6rem}.world-grid,.scenario-grid{gap:42px}.pillar{padding-right:19px}.pillar + .pillar{padding-left:19px}}
+    @media(max-width:660px){.wrap{width:min(calc(100% - 36px),var(--max))}.nav-inner{min-height:66px}.brand{font-size:1rem}.nav-links{gap:14px;font-size:.75rem}.nav-links a:not(.nav-cta){display:none}.nav-links .nav-cta{padding:8px 10px}.hero-grid{padding-top:139px}.hero-copy{min-width:0}.hero h1{font-size:clamp(4rem,18vw,6.5rem)}.hero-art{margin-top:10px}.art-caption{display:none}.section{padding:74px 0}.section-heading{margin-bottom:34px}.pillars,.scenario-grid,.world-grid{grid-template-columns:1fr}.pillar,.pillar + .pillar{min-height:0;padding:24px 0;border-right:0;border-bottom:1px solid var(--line)}.pillar:last-child{border:0}.pillar h3{margin:20px 0 12px}.world-frame{min-height:320px}.world-text{order:-1}.closing{padding:80px 0 90px}.footer-inner{align-items:flex-start;flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button{transition:none}.button:hover{transform:none}}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#inicio" aria-label="Kingdom, voltar ao início"><span class="brand-mark" aria-hidden="true">✦</span> Kingdom</a>
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#ideia">A ideia</a>
+        <a href="#mundo">O mundo</a>
+        <a class="nav-cta" href="#descobrir">Descobrir o projeto ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Um jogo de reino em desenvolvimento</p>
+          <h1 class="serif" id="hero-title">King<span>dom.</span></h1>
+          <p class="hero-lead">Construa um reino. Conviva com as consequências.</p>
+          <p class="hero-sub">Uma ilha no céu. Oito pessoas para começar. Um rei que escuta você, mas decide por si. Cada ordem precisa atravessar o mundo antes de virar realidade.</p>
+          <div class="actions">
+            <a class="button" href="#ideia">Conheça a ideia <span aria-hidden="true">↘</span></a>
+            <a class="button alt" href="#historia">Veja uma história possível</a>
+          </div>
+          <div class="hero-note">Um mundo pequeno. Possibilidades imensas.</div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <svg viewBox="0 0 750 720" role="img" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="halo"><stop stop-color="#648063" stop-opacity=".42"/><stop offset="1" stop-color="#648063" stop-opacity="0"/></radialGradient>
+              <linearGradient id="rock" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#4c5941"/><stop offset=".5" stop-color="#2f3c31"/><stop offset="1" stop-color="#101a17"/></linearGradient>
+            </defs>
+            <ellipse cx="405" cy="334" rx="335" ry="298" fill="url(#halo)"/>
+            <g fill="none" stroke="#a8bca0" opacity=".31" stroke-width="2">
+              <path d="M85 190c39-20 58-13 89-14M542 120c36-16 82-14 112 0M56 384c22-8 42-8 61-4M618 385c41-13 65-12 102-4"/>
+              <path d="m155 130 11-5 11 5m395 79 11-5 11 5m80 77 11-5 11 5"/>
+            </g>
+            <ellipse cx="390" cy="479" rx="287" ry="53" fill="#08110f" opacity=".32"/>
+            <path d="M95 401 135 439 204 470 250 528 315 607 383 668 463 602 523 523 584 471 657 438 680 405Z" fill="url(#rock)" stroke="#1b2a21" stroke-width="4"/>
+            <path d="M183 450 254 514 307 573M446 525l-64 133M568 460l-55 62" fill="none" stroke="#839078" stroke-width="3" opacity=".4"/>
+            <path d="M108 387c75-27 164-39 268-40 113-1 224 14 293 42l11 16c-82 36-196 48-302 47-114-1-216-16-282-48Z" fill="#415f42" stroke="#14261d" stroke-width="5"/>
+            <path d="M102 399c82 20 177 31 279 30 109 0 213-12 296-30" fill="none" stroke="#8ca878" stroke-width="7"/>
+            <path d="M146 389c74-25 167-31 238-31 93 0 176 7 246 28" fill="none" stroke="#78946a" stroke-width="5"/>
+            <g fill="#203729" stroke="#b6af87" stroke-width="3" stroke-linejoin="round">
+              <path d="M239 354v-93l17-7v-26h26v24l22 8v95Z"/>
+              <path d="M315 351V215l16-8v-34h41v34l18 8v140Z"/>
+              <path d="M405 356V264l21-10v-31h30v30l21 12v94Z"/>
+              <path d="M242 251h60M317 215h71M407 265h70" stroke="#b6af87"/>
+              <path d="m321 168 8-22h45l8 22M240 225l14-17h30l16 18M410 222l14-20h35l18 22" fill="#a77b54"/>
+              <path d="M269 355v-34h16v34M347 353v-45h20v45M436 356v-31h16v31" fill="#0c1b17"/>
+            </g>
+            <g fill="#c9aa73">
+              <rect x="340" y="226" width="8" height="18"/><rect x="364" y="226" width="8" height="18"/>
+              <rect x="258" y="270" width="8" height="14"/><rect x="279" y="270" width="8" height="14"/>
+              <rect x="423" y="284" width="8" height="14"/><rect x="452" y="284" width="8" height="14"/>
+            </g>
+            <g fill="#8a9c70" stroke="#233b2b" stroke-width="3">
+              <path d="M167 383v-77m-21 72 21-77 23 78m-33-14 10-72 13 72"/>
+              <path d="M514 380v-91m-27 90 25-101 26 102m-38-14 12-88 15 88"/>
+              <path d="M582 391v-65m-19 65 19-68 19 70"/>
+            </g>
+            <g fill="#bdac82" stroke="#233127" stroke-width="3"><path d="M483 373v-36l24-11 25 11v43Z"/><path d="M489 337h38l-18-21Z" fill="#9b7357"/><path d="M492 380v-20h10v20" fill="#243729"/><path d="M563 391v-23l18-8 19 9v26Z"/></g>
+            <path d="M362 365c-11 16-24 27-26 47m42-45c10 11 19 24 15 49" fill="none" stroke="#c6b998" stroke-width="7" opacity=".75"/>
+            <g fill="#d7bd87"><circle cx="330" cy="396" r="5"/><path d="M327 402v13m0-6-8 6m8-6 7 5" stroke="#d7bd87" stroke-width="3"/><circle cx="394" cy="397" r="5"/><path d="M394 402v14m0-7-8 4m8-4 8 5" stroke="#d7bd87" stroke-width="3"/></g>
+            <path d="M73 485c31-9 71-9 102 0m407 28c35-9 76-7 112 4" stroke="#97aa90" stroke-width="3" opacity=".24" fill="none"/>
+            <circle cx="631" cy="194" r="3" fill="#d5bb86"/><circle cx="114" cy="286" r="2" fill="#d5bb86"/>
+          </svg>
+          <div class="art-caption">Um lugar. Muitas histórias.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section idea" id="ideia" aria-labelledby="idea-title">
+      <div class="wrap idea-grid">
+        <div><p class="eyebrow">A ideia central</p><div class="quote-mark" aria-hidden="true">“</div></div>
+        <div><blockquote id="idea-title">Você pode pedir ao rei que construa uma muralha. <em>Não pode obrigá-lo a concordar.</em><cite>Entre sua vontade e o mundo, existem pessoas.</cite></blockquote></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="pillars-title">
+      <div class="wrap">
+        <div class="section-heading"><p class="eyebrow">O que torna Kingdom diferente</p><h2 class="serif" id="pillars-title">Um reino não é uma máquina.</h2><p>É um lugar feito de pessoas que precisam comer, trabalhar, confiar, lembrar e decidir. Seu papel é influenciar esse mundo pela Coroa.</p></div>
+        <div class="pillars">
+          <article class="pillar"><span class="pillar-number">01 /</span><h3>Pessoas com vontade própria</h3><p>O rei avalia pedidos. Moradores seguem necessidades, relações e compromissos. Cada decisão pode encontrar resistência, ajuda ou uma ideia melhor.</p></article>
+          <article class="pillar"><span class="pillar-number">02 /</span><h3>Ordens que precisam chegar</h3><p>Uma decisão é escrita, transmitida e executada por alguém. Distância, falta de material e informação incompleta mudam o que realmente acontece.</p></article>
+          <article class="pillar"><span class="pillar-number">03 /</span><h3>Um mundo que se lembra</h3><p>Casas, recursos e vínculos persistem. Uma promessa cumprida, uma recusa ou uma obra interrompida deixam consequências para as próximas escolhas.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section scenario" id="historia" aria-labelledby="scenario-title">
+      <div class="wrap scenario-grid">
+        <div><p class="eyebrow">Uma história possível</p><h2 class="serif" id="scenario-title">Tudo começa com uma muralha.</h2><p class="scenario-intro">Uma ameaça parece distante. Você sugere reforçar a defesa da ilha. A partir daí, o plano deixa de ser só seu.</p><div class="scenario-card">Uma pergunta para o jogador<strong>O que acontece quando o mundo não coopera?</strong></div></div>
+        <ol class="steps">
+          <li><span class="num">01</span><div><strong>Você propõe.</strong><p>O pedido chega ao rei pelo Livro de Ordens.</p></div></li>
+          <li><span class="num">02</span><div><strong>O rei decide.</strong><p>Ele considera o risco, os recursos e o que acredita saber. Pode aceitar, mudar ou recusar.</p></div></li>
+          <li><span class="num">03</span><div><strong>Pessoas executam.</strong><p>Alguém recebe a ordem, busca material conhecido e tenta construir no local.</p></div></li>
+          <li><span class="num">04</span><div><strong>O mundo responde.</strong><p>Um atraso, uma escassez ou uma descoberta muda o plano. Cada pessoa reage com o conhecimento que tem.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section world" id="mundo" aria-labelledby="world-title">
+      <div class="wrap world-grid">
+        <div class="world-frame" aria-hidden="true"><svg viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg"><path d="M100 135C158 107 196 117 248 140s113 19 156-5" stroke="#d6ad72" stroke-dasharray="5 10" stroke-width="2" fill="none" opacity=".8"/><path d="M108 170c35-11 63-11 98 0l-10 16-28 32-14 39-22-38-27-31Z" fill="#5d7655" stroke="#b7ae85" stroke-width="2"/><path d="M296 176c40-13 77-12 111 0l-12 13-33 37-13 41-22-40-31-38Z" fill="#405949" stroke="#b7ae85" stroke-width="2"/><path d="M145 155v-34h23v33m-15-34v-24h16v24m188 43v-19h18v19" stroke="#d3bd91" fill="#344736" stroke-width="3"/><circle cx="153" cy="158" r="6" fill="#d6ad72"/><circle cx="350" cy="164" r="6" fill="#d6ad72"/><path d="m231 128 13 11 16-7-9 14" fill="none" stroke="#d6ad72" stroke-width="2"/><text x="106" y="301" fill="#d6ad72" font-size="12" letter-spacing="2">SUA ILHA</text><text x="292" y="305" fill="#a8b2a5" font-size="12" letter-spacing="2">OUTRAS TERRAS</text><text x="172" y="80" fill="#c5cbb9" font-size="11" letter-spacing="1.5">CARTAS • VIAJANTES • RUMORES</text></svg></div>
+        <div class="world-text"><p class="eyebrow">Além do horizonte</p><h2 class="serif" id="world-title">O mundo é maior do que aquilo que você vê.</h2><p>Você conhece sua ilha diretamente. Outras terras existem e seguem seus próprios caminhos, mas chegam até você por viajantes, cartas e relatos. Uma notícia pode ser antiga. Duas pessoas podem contar versões diferentes.</p><p>Em Kingdom, descobrir o que está acontecendo também faz parte de governar.</p><div class="world-rule">A informação percorre o mundo. A incerteza também.</div></div>
+      </div>
+    </section>
+
+    <section class="closing" id="descobrir" aria-labelledby="closing-title">
+      <div class="wrap"><p class="eyebrow">Kingdom · em desenvolvimento</p><h2 class="serif" id="closing-title">Que tipo de reino nasce quando ninguém obedece por mágica?</h2><p>Kingdom está sendo construído passo a passo, começando por uma ilha pequena e seus habitantes. Explore a visão e acompanhe o caminho do projeto.</p><a class="button" href="docs/visao-do-jogo.md">Leia a visão do jogo ↗</a><a class="button alt" href="docs/roadmap.md">Veja o roadmap ↗</a></div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-inner"><span>© Kingdom · Um projeto em desenvolvimento</span><span>Uma ilha. Oito habitantes. Consequências sem fim.</span></div></footer>
+</body>
+</html>
