@@ -86,11 +86,36 @@
     .closing h2{max-width:800px;margin:16px auto 22px;font-size:clamp(3.1rem,6.5vw,6.5rem);line-height:.99}
     .closing p:not(.eyebrow){max-width:590px;margin:0 auto 31px;color:var(--muted);line-height:1.7}
     .closing .button{margin:0 5px 10px}
+    button.button{font-family:inherit;cursor:pointer}
+    .modal-open{overflow:hidden}
+    .info-modal{width:min(760px,calc(100% - 28px));max-height:min(86vh,850px);padding:0;border:1px solid rgba(214,173,114,.5);border-radius:3px;background:#19271f;color:var(--paper);box-shadow:0 30px 90px rgba(0,0,0,.5)}
+    .info-modal::backdrop{background:rgba(4,10,7,.78);backdrop-filter:blur(6px)}
+    .modal-inner{padding:clamp(26px,5vw,52px)}
+    .modal-top{display:flex;justify-content:space-between;align-items:start;gap:20px}
+    .modal-close{flex:none;display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--paper);font-size:1.4rem;line-height:1;cursor:pointer}
+    .modal-close:hover{border-color:var(--gold);color:var(--gold)}
+    .modal-close:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+    .info-modal h2{font-size:clamp(2.5rem,5vw,4.2rem);line-height:1.03;margin:14px 0 20px}
+    .modal-lead{max-width:610px;margin:0 0 28px;color:#c6d0c2;font-family:Georgia,serif;font-size:1.18rem;line-height:1.53}
+    .modal-section{padding:22px 0;border-top:1px solid var(--line)}
+    .modal-section h3{margin:0 0 9px;color:var(--gold);font-family:Georgia,serif;font-size:1.38rem;font-weight:400}
+    .modal-section p{margin:0;color:var(--muted);font-size:.93rem;line-height:1.7}
+    .modal-section p+p{margin-top:10px}
+    .modal-foot{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem}
+    .modal-foot a{color:var(--gold);text-decoration:underline;text-underline-offset:4px}
+    .modal-foot a:hover{color:#f0cca0}
+    .roadmap-row{display:grid;grid-template-columns:94px 1fr;gap:17px;align-items:start;padding:15px 0;border-top:1px solid var(--line)}
+    .roadmap-row:first-child{border-top:0}
+    .roadmap-state{width:max-content;max-width:100%;border:1px solid var(--line);border-radius:30px;padding:4px 8px;color:var(--muted);font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+    .roadmap-state.done{border-color:rgba(171,199,159,.5);color:#bad5ac}
+    .roadmap-state.active{border-color:rgba(214,173,114,.55);color:var(--gold)}
+    .roadmap-row strong{display:block;font-family:Georgia,serif;font-size:1.13rem;font-weight:400}
+    .roadmap-row p{margin:4px 0 0;color:var(--muted);font-size:.84rem;line-height:1.55}
     footer{border-top:1px solid var(--line);padding:30px 0;color:#9aa99c;font-size:.79rem}
     .footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
     .footer-inner a:hover{color:var(--gold)}
     @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:0;padding-top:165px;padding-bottom:70px}.hero{min-height:0}.hero-art{width:min(650px,100%);margin:-20px auto 0}.art-caption{right:3%;bottom:8%}.idea-grid{grid-template-columns:1fr;gap:10px}.idea .quote-mark{font-size:6rem}.world-grid,.scenario-grid{gap:42px}.pillar{padding-right:19px}.pillar + .pillar{padding-left:19px}}
-    @media(max-width:660px){.wrap{width:min(calc(100% - 36px),var(--max))}.nav-inner{min-height:66px}.brand{font-size:1rem}.nav-links{gap:14px;font-size:.75rem}.nav-links a:not(.nav-cta){display:none}.nav-links .nav-cta{padding:8px 10px}.hero-grid{padding-top:139px}.hero-copy{min-width:0}.hero h1{font-size:clamp(4rem,18vw,6.5rem)}.hero-art{margin-top:10px}.art-caption{display:none}.section{padding:74px 0}.section-heading{margin-bottom:34px}.pillars,.scenario-grid,.world-grid{grid-template-columns:1fr}.pillar,.pillar + .pillar{min-height:0;padding:24px 0;border-right:0;border-bottom:1px solid var(--line)}.pillar:last-child{border:0}.pillar h3{margin:20px 0 12px}.world-frame{min-height:320px}.world-text{order:-1}.closing{padding:80px 0 90px}.footer-inner{align-items:flex-start;flex-direction:column}}
+    @media(max-width:660px){.wrap{width:min(calc(100% - 36px),var(--max))}.nav-inner{min-height:66px}.brand{font-size:1rem}.nav-links{gap:14px;font-size:.75rem}.nav-links a:not(.nav-cta){display:none}.nav-links .nav-cta{padding:8px 10px}.hero-grid{padding-top:139px}.hero-copy{min-width:0}.hero h1{font-size:clamp(4rem,18vw,6.5rem)}.hero-art{margin-top:10px}.art-caption{display:none}.section{padding:74px 0}.section-heading{margin-bottom:34px}.pillars,.scenario-grid,.world-grid{grid-template-columns:1fr}.pillar,.pillar + .pillar{min-height:0;padding:24px 0;border-right:0;border-bottom:1px solid var(--line)}.pillar:last-child{border:0}.pillar h3{margin:20px 0 12px}.world-frame{min-height:320px}.world-text{order:-1}.closing{padding:80px 0 90px}.footer-inner{align-items:flex-start;flex-direction:column}.roadmap-row{grid-template-columns:1fr;gap:7px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button{transition:none}.button:hover{transform:none}}
   </style>
 </head>
@@ -204,10 +229,66 @@
     </section>
 
     <section class="closing" id="descobrir" aria-labelledby="closing-title">
-      <div class="wrap"><p class="eyebrow">Kingdom · em desenvolvimento</p><h2 class="serif" id="closing-title">Que tipo de reino nasce quando ninguém obedece por mágica?</h2><p>Kingdom está sendo construído passo a passo, começando por uma ilha pequena e seus habitantes. Explore a visão e acompanhe o caminho do projeto.</p><a class="button" href="docs/visao-do-jogo.md">Leia a visão do jogo ↗</a><a class="button alt" href="docs/roadmap.md">Veja o roadmap ↗</a></div>
+      <div class="wrap"><p class="eyebrow">Kingdom · em desenvolvimento</p><h2 class="serif" id="closing-title">Que tipo de reino nasce quando ninguém obedece por mágica?</h2><p>Kingdom está sendo construído passo a passo, começando por uma ilha pequena e seus habitantes. Explore a visão e acompanhe o caminho do projeto.</p><button class="button" type="button" data-open-modal="visao-modal" aria-haspopup="dialog">Leia a visão do jogo ↗</button><button class="button alt" type="button" data-open-modal="roadmap-modal" aria-haspopup="dialog">Veja o roadmap ↗</button></div>
     </section>
   </main>
 
   <footer><div class="wrap footer-inner"><span>© Kingdom · Um projeto em desenvolvimento</span><span>Uma ilha. Oito habitantes. Consequências sem fim.</span></div></footer>
+
+  <dialog class="info-modal" id="visao-modal" aria-labelledby="visao-title">
+    <div class="modal-inner">
+      <div class="modal-top"><p class="eyebrow">A visão do jogo</p><button class="modal-close" type="button" data-close-modal aria-label="Fechar visão do jogo" autofocus>×</button></div>
+      <h2 class="serif" id="visao-title">Um reino vivo, visto de perto.</h2>
+      <p class="modal-lead">Kingdom é um jogo de administração em 3D sobre influência, autonomia e consequências persistentes.</p>
+      <div class="modal-section"><h3>Você orienta a Coroa</h3><p>O jogador apresenta ideias ao rei. Ele avalia, pode discordar e, se aceitar, registra uma ordem. Pessoas precisam recebê-la e executá-la no mundo físico.</p></div>
+      <div class="modal-section"><h3>As pessoas decidem</h3><p>Moradores têm necessidades, famílias, domicílios, relações, memória e conhecimento próprios. Trabalham, procuram recursos, ajudam ou recusam conforme aquilo que sabem e podem fazer.</p></div>
+      <div class="modal-section"><h3>O mundo conserva consequências</h3><p>Obras, bens, terreno e vínculos continuam entre sessões. Informação não aparece magicamente: o jogador vê diretamente apenas sua ilha e conhece outras terras por cartas, viajantes e relatos.</p></div>
+      <div class="modal-section"><h3>Uma ambição construída por etapas</h3><p>Castelos personalizados, trabalho especializado, leis, diplomacia, conflitos e sucessão pertencem à visão de longo prazo. Cada sistema entra após demonstrações pequenas e verificáveis.</p></div>
+      <div class="modal-foot"><span>Resumo da visão do projeto · 23/09/2026</span><a href="docs/visao-do-jogo.md">Ler documento completo ↗</a></div>
+    </div>
+  </dialog>
+
+  <dialog class="info-modal" id="roadmap-modal" aria-labelledby="roadmap-title">
+    <div class="modal-inner">
+      <div class="modal-top"><p class="eyebrow">O caminho até agora</p><button class="modal-close" type="button" data-close-modal aria-label="Fechar roadmap" autofocus>×</button></div>
+      <h2 class="serif" id="roadmap-title">De oito pessoas a um povoado vivo.</h2>
+      <p class="modal-lead">O desenvolvimento começa pequeno. Cada marco só é fechado depois que seu comportamento funciona e resiste a salvamento e retomada.</p>
+      <div aria-label="Resumo dos marcos até a etapa atual">
+        <div class="roadmap-row"><span class="roadmap-state done">Entregue</span><div><strong>M0–M4 · Fundação do reino</strong><p>Oito habitantes, rei e Livro de Ordens, primeiras rotinas, produção, propriedade e trocas locais.</p></div></div>
+        <div class="roadmap-row"><span class="roadmap-state active">Em aberto</span><div><strong>M5 · Povoado e estruturas</strong><p>Moradias, depósito, paredes, dano e reparo já têm recortes funcionais. O encerramento formal do marco ainda está aberto.</p></div></div>
+        <div class="roadmap-row"><span class="roadmap-state done">Concluído</span><div><strong>M6 · Família e vida social local</strong><p>Famílias, domicílios, responsabilidades, encontros e memórias privadas foram validados em conjunto.</p></div></div>
+        <div class="roadmap-row"><span class="roadmap-state done">Concluído</span><div><strong>M7 · Moradias autônomas</strong><p>Moradores identificam necessidades domésticas e realizam pequenas melhorias com recursos e decisões próprios.</p></div></div>
+        <div class="roadmap-row"><span class="roadmap-state active">Em curso</span><div><strong>Trilha de arquitetura · Fase F</strong><p>Projetos de cômodos e primeiras coberturas já podem virar obras transportadas e montadas por pessoas. A fase segue aberta para novos componentes.</p></div></div>
+        <div class="roadmap-row"><span class="roadmap-state">Próximo</span><div><strong>M8 · Trabalho e especialização emergente</strong><p>Planejado para tornar experiência, competência e conhecimento produtivo visíveis nas escolhas individuais.</p></div></div>
+      </div>
+      <div class="modal-foot"><span>Estado resumido em 23/09/2026</span><a href="docs/roadmap.md">Ler roadmap completo ↗</a></div>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      let lastTrigger = null;
+      document.querySelectorAll('[data-open-modal]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const dialog = document.getElementById(button.dataset.openModal);
+          if (!dialog) return;
+          lastTrigger = button;
+          dialog.showModal();
+          document.body.classList.add('modal-open');
+        });
+      });
+      document.querySelectorAll('.info-modal').forEach((dialog) => {
+        dialog.querySelector('[data-close-modal]').addEventListener('click', () => dialog.close());
+        dialog.addEventListener('click', (event) => {
+          if (event.target === dialog) dialog.close();
+        });
+        dialog.addEventListener('close', () => {
+          document.body.classList.remove('modal-open');
+          lastTrigger?.focus();
+          lastTrigger = null;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
